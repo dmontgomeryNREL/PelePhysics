@@ -8,28 +8,36 @@
 namespace pele::physics::utilities {
 namespace cgs2mks {
 // CGS to MKS conversions
-template <int n = 0>
-AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
+AMREX_GPU_HOST_DEVICE
+AMREX_FORCE_INLINE
+amrex::Real
 Length(const amrex::Real L_cgs)
 {
-  // Usage: Length(L_cgs) or Length<n>(L_cgs)
-  if constexpr (n == 0) {
-    return L_cgs * 1.0e-2; // cm to m
-  } else {
-    return L_cgs * std::pow(1.0e-2, n); // cm^n to m^n
-  }
+  return L_cgs * 1.0e-2; // cm to m
 }
 
-template <int n = 0>
-AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
+AMREX_GPU_HOST_DEVICE
+AMREX_FORCE_INLINE
+amrex::Real
+Length(const amrex::Real L_cgs, const amrex::Real n)
+{
+  return L_cgs * std::pow(1.0e-2, n); // cm^n to m^n
+}
+
+AMREX_GPU_HOST_DEVICE
+AMREX_FORCE_INLINE
+amrex::Real
 Mass(const amrex::Real M_cgs)
 {
-  // Usage: Mass(M_cgs) or Mass<n>(M_cgs)
-  if constexpr (n == 0) {
-    return M_cgs * 1.0e-3; // g to kg
-  } else {
-    return M_cgs * std::pow(1.0e-3, n); // g^n to kg^n
-  }
+  return M_cgs * 1.0e-3; // g to kg
+}
+
+AMREX_GPU_HOST_DEVICE
+AMREX_FORCE_INLINE
+amrex::Real
+Mass(const amrex::Real M_cgs, const amrex::Real n)
+{
+  return M_cgs * std::pow(1.0e-3, n); // g^n to kg^n
 }
 
 AMREX_GPU_HOST_DEVICE
@@ -131,28 +139,36 @@ Lambda(const amrex::Real l_cgs)
 
 namespace mks2cgs {
 // MKS to CGS conversions
-template <int n = 0>
-AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
+AMREX_GPU_HOST_DEVICE
+AMREX_FORCE_INLINE
+amrex::Real
 Length(const amrex::Real L_mks)
 {
-  // Usage: Length(L_mks) or Length<n>(L_mks)
-  if constexpr (n == 0) {
-    return L_mks * 1.0e2; // m to cm
-  } else {
-    return L_mks * std::pow(1.0e2, n); // m^n to cm^n
-  }
+  return L_mks * 1.0e2; // m to cm
 }
 
-template <int n = 0>
-AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
+AMREX_GPU_HOST_DEVICE
+AMREX_FORCE_INLINE
+amrex::Real
+Length(const amrex::Real L_mks, const amrex::Real n)
+{
+  return L_mks * std::pow(1.0e2, n); // m^n to cm^n
+}
+
+AMREX_GPU_HOST_DEVICE
+AMREX_FORCE_INLINE
+amrex::Real
 Mass(const amrex::Real M_mks)
 {
-  // Usage: Mass(M_mks) or Mass<n>(M_mks)
-  if constexpr (n == 0) {
-    return M_mks * 1.0e3; // kg to g
-  } else {
-    return M_mks * std::pow(1.0e3, n); // kg^n to g^n
-  }
+  return M_mks * 1.0e3; // kg to g
+}
+
+AMREX_GPU_HOST_DEVICE
+AMREX_FORCE_INLINE
+amrex::Real
+Mass(const amrex::Real M_mks, const amrex::Real n)
+{
+  return M_mks * std::pow(1.0e3, n); // kg^n to g^n
 }
 
 AMREX_GPU_HOST_DEVICE
